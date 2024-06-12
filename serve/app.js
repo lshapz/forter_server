@@ -1,6 +1,6 @@
-import express from "express";
+var express = require("express");
 var app = express();
-import cors from "cors";
+var cors = require("cors");
 app.use(cors())
 
 let tempCache = {};
