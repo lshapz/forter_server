@@ -7,5 +7,5 @@
 * run `node serve/server.js`
     * to prevent exceeding rate limits at the services, the default number of attempts at each provider is 5. 
     * if you would like more or fewer queries, you can include that as an argument, i.e. `node server.js 6`
-* visit `http://localhost:1234/getCountry?ip=${IP_ADDRESS}` to see the name of the country associated with a given IP address 
+* visit `http://localhost:3000/getCountry?ip=${IP_ADDRESS}` to see the name of the country associated with a given IP address 
 * to run the unit tests with Jest, run `npm run test`

@@ -1,6 +1,6 @@
-var express = require("express");
+import express from "express";
 var app = express();
-var cors = require('cors')
+import cors from "cors";
 app.use(cors())
 
 let tempCache = {};
@@ -12,13 +12,13 @@ let IPStackFetchCount = 0;
 // NOTE: API key for this site was only working intermittently, but you get 500 free / day without registration
 let IP2LocationFetchCount = 0;
 
-app.get('/', async (_req, res, _next) => {
+app.get("/", async (_req, res, _next) => {
    return sendResponse(res, "this page is not functional")
 })
 
 app.get("/testing", async (_req, res, _next) => {
     let body = await fetch(`http://api.ipstack.com/123.45.6.78?access_key=${IPStackApiKey}`)
-    let answer = await parseBody(body, "123.45.6.78", 'stack');
+    let answer = await parseBody(body, "123.45.6.78", "stack");
     return sendResponse(res, answer);
 }) 
 
@@ -38,7 +38,7 @@ app.get("/getCountry", async (req, res, next) => {
         } catch (error) {
             return sendResponse(res, `Error: ${error}`);
         };
-        let answer = await parseBody(body, ip, 'stack');
+        let answer = await parseBody(body, ip, "stack");
         return sendResponse(res, answer);
     } else if ((IPStackFetchCount >= stackLimits) && (IP2LocationFetchCount < stackLimits)) {
         try {
@@ -47,7 +47,7 @@ app.get("/getCountry", async (req, res, next) => {
         } catch (error) {
             return sendResponse(res, `Error: ${error}`);
         };
-        let answer = await parseBody(body, ip, 'locat');
+        let answer = await parseBody(body, ip, "locat");
         return sendResponse(res, answer);
     } else if (IP2LocationFetchCount >= stackLimits) {
         return sendResponse(res, "You have reached the rate limit for our IP location servers! Please try again tomorrow.");
